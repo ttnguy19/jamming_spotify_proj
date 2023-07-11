@@ -2,12 +2,15 @@ import React from 'react';
 import Track from './Track';
 
 function Tracklist(props){
-    if (!Array.isArray(props.tracksList)) {
-        return null; 
+    var tracks=[];
+    if (!props.tracks) {
+        tracks=[];
+      } else {
+        tracks = props.tracks;
       }
     return (
         <div className="Track-list">
-           {props.tracks.map((track) => {
+           {tracks.map((track) => {
         return (
           <Track
             track={track}
