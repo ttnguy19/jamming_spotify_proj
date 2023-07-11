@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Tracklist from './Tracklist';
 
-function Playlist(){
-    const [playListName, setPlayListName] = useState('');
-
+function Playlist(props){
     return (
-        <div className="Playlist">
-            <h2>{playListName}</h2>
-            <Tracklist/>
-            <button className="Playlist-save">Save To Spotify</button>
-        </div>
+    <div className="Playlist">
+      <input defaultValue={"New Playlist"} />
+      <Tracklist
+        tracks={props.playlistTracks}
+      />
+      <button className="Playlist-save">SAVE TO SPOTIFY</button>
+    </div>
     )
 }
 
