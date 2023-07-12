@@ -25,6 +25,24 @@ function App() {
   const [playListName, setPlayListName]=useState('New Playlist');
   const [playListTracks,setPlayListTracks] = useState(tracks);
 
+
+  //Function to save playlist 
+  const savePlaylist = () =>{
+    const uriNum = playListTracks.map((track) => track.uri); //uriNum is of type array
+    //console.log(uriNum); test
+  };
+
+  //Function to save new Playlist name
+  const handleNameChange = (name) =>{
+    setPlayListName(name);
+  };
+
+  //Function to remove a track
+  const handleRemoveTrack = (trackID) =>{
+    setPlayListTracks((prevTrackList) => prevTrackList.filter((track) => track.id !== trackID));
+  }
+
+
   return (
     <div>
       <h1></h1>
@@ -35,6 +53,9 @@ function App() {
         <Playlist
            playlistName={playListName}
            playlistTracks={playListTracks}
+           onSave={savePlaylist}
+           onNameChange={handleNameChange}
+           onRemoveTrack={handleRemoveTrack}
           />
       </div>
       </div>
