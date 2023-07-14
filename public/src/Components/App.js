@@ -21,7 +21,7 @@ const tracks = [
 ];
 
 function App() {
-  const [searchResult,setSearchResult]=useState([]);
+  const [searchResults,setSearchResults]=useState([]);
   const [playListName, setPlayListName]=useState('New Playlist');
   const [playListTracks,setPlayListTracks] = useState(tracks);
 
@@ -31,6 +31,14 @@ function App() {
     const uriNum = playListTracks.map((track) => track.uri); //uriNum is of type array
     //console.log(uriNum); test
   };
+
+  //Function to add track playlist 
+  const addTrack = (track) =>{
+    //If a track already exists, do not add duplicate, else add track to existing playlsit
+    if (playListTracks.some((savedTrack)=> savedTrack.id === track.id)) return;
+
+    setPlayListTracks(prevPlayList => [track, ...prevPlayList]);
+  }
 
   //Function to save new Playlist name
   const handleNameChange = (name) =>{
@@ -49,7 +57,7 @@ function App() {
       <div className='App'>
         <SearchBar/>
       <div className="App-playlist">
-        <SearchResults searchResult={searchResult}/>
+        <SearchResults searchResults={searchResults} onAdd={addTrack}/>
         <Playlist
            playlistName={playListName}
            playlistTracks={playListTracks}
@@ -62,5 +70,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

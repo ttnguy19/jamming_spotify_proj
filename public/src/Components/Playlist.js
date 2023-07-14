@@ -15,6 +15,8 @@ function Playlist(props){
         onChange={handleChange} />
       <Tracklist
         tracks={props.playlistTracks}
+        removable={true}
+        onRemove={props.onRemoveTrack}
       />
       <button 
         className="Playlist-save"
