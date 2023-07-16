@@ -58,6 +58,7 @@ function App() {
         <SearchBar/>
       <div className="App-playlist">
         <SearchResults searchResults={searchResults} onAdd={addTrack}/>
+        <h3>Playlist</h3>
         <Playlist
            playlistName={playListName}
            playlistTracks={playListTracks}

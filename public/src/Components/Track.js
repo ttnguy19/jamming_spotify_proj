@@ -11,7 +11,7 @@ function Track(props){
     }
     //Use onRemove function from parent components
     const removeTrack = () => {
-        props.onRemove(props.track);
+        props.onRemove(props.track.id);
     }
 
     //IMPORTANT: render button accordance to whether the track is removal or not to avoid addTrack or removeTack from being
