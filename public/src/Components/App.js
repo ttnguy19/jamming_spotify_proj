@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Playlist from './Playlist';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import Spotify from '../utils/Spotify';
 
 const tracks = [
   {
@@ -22,9 +23,12 @@ const tracks = [
 
 function App() {
   const [searchResults,setSearchResults]=useState([]);
-  const [playListName, setPlayListName]=useState('New Playlist');
+  const [playListName, setPlayListName]=useState('');
   const [playListTracks,setPlayListTracks] = useState(tracks);
 
+  const search = (term) =>{
+    Spotify.search(term).then(setSearchResults);
+  }
 
   //Function to save playlist 
   const savePlaylist = () =>{
@@ -50,12 +54,11 @@ function App() {
     setPlayListTracks((prevTrackList) => prevTrackList.filter((track) => track.id !== trackID));
   }
 
-
   return (
     <div>
       <h1></h1>
       <div className='App'>
-        <SearchBar/>
+        <SearchBar onSearch={search}/>
       <div className="App-playlist">
         <SearchResults searchResults={searchResults} onAdd={addTrack}/>
         <h3>Playlist</h3>
